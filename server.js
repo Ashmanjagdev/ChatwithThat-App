@@ -1,8 +1,17 @@
 const express= require("express");
 const dotenv = require("dotenv");
+const http=require("http");
+const cors = require("cors");
+const socketIO = require("socket.io");
 
 require('dotenv').config();
 const app = express();
+
+const server=http.createServer(app);
+
+const io=socketIO(server);
+
+
 let bodyParser=require("body-parser");
 const mongoose=require('mongoose');
 const session = require('express-session');
@@ -10,9 +19,6 @@ const passport=require("passport");
 const passportLocalMongoose=require("passport-local-mongoose");
 mongoose.set('strictQuery', false);
 
-const http=require("http");
-const cors = require("cors");
-const socketIO = require("socket.io");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -47,7 +53,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 const users=[{}];
-
 
 
 var values='';
@@ -155,9 +160,7 @@ app.listen(4000,()=>{
 
 
 
-const server=http.createServer(app);
 
-const io=socketIO(server);
 
 io.on("connection",(socket)=>{
     socket.on('joined',({values})=>{
