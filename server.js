@@ -48,9 +48,7 @@ passport.deserializeUser(User.deserializeUser());
 
 const users=[{}];
 
-app.get("/",(req,res)=>{
-    res.send("HELL ITS WORKING");
-});
+
 
 var values='';
 app.get("/check", (req, res) => {
