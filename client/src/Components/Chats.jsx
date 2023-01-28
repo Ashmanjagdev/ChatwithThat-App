@@ -6,7 +6,7 @@ import ReactScrollToBottom from "react-scroll-to-bottom";
 import {useNavigate} from "react-router-dom"; 
 let socket;
 
-const ENDPOINT = "http://localhost:5000/";
+const ENDPOINT = "https://chat-with-that-socket.onrender.com/";
 
 const Chats = () => {
   const [values,setvalues]=useState("");
